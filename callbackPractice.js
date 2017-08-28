@@ -24,7 +24,10 @@ and what you should write is the sayHi function that makes the code above work,
 
   // Code Here
 
-  
+function first (names, cb){
+  return cb(names[0]);
+}
+
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
   console.log('The first name in names is ' + firstName);
@@ -37,7 +40,9 @@ first(names, function(firstName){
 
   //Code Here
 
-
+function last(names,cb){
+  return cb(names[(names.length - 1)]);
+}
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -49,8 +54,10 @@ last(names, function(lastName){
 // 3. Write a function called multiply that multiplies two numbers. Invoke the callback with the result of the multiplication. 
 
   //Code Here
+function multiply(num1,num2,cb){
+  return cb(num1 * num2);
 
-
+}
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -63,10 +70,17 @@ multiply(4, 3, function(answer){
 // If the name does not exist, invoke the callback with false as an argument.
 
   //Code Here 
+function contains(names,str, cb){
+  names = names.sort();
+  for (var i = 0; i < names.length; i++){
+    if (names[i] === str){
+      return cb(true);
+    }
+  }
+      return cb(false);
+  }
 
-
-
-
+  
 contains(names, 'Colt', function(result){
   if(result === true){
     console.log('Colt is in the array');
@@ -82,6 +96,18 @@ contains(names, 'Colt', function(result){
 
   //Code Here
 
+function uniq(names,cb){
+  names.sort();
+  for (var i = 0;i < names.length; i++ ){
+    if (names[i] === names[i-1]){
+      names.splice((i-1),1);}
+    };
+  for (var j = 0;j < names.length; j++ ){
+      if (names[j] === names[j-1]){
+        names.splice((j-1),1);}
+      };
+   return cb(names);
+}
 
 
 uniq(names, function(uniqArr){
@@ -92,7 +118,12 @@ uniq(names, function(uniqArr){
 // 6. Write a function called each that takes in an array of names. For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 
     //Code Here 
+function each(names,cb){
+  for (var i = 0; i < names.length; i++){
+  cb(names[i],names.indexOf(i));
 
+  }
+}
 
 
 each(names, function(item, indice){
@@ -106,7 +137,12 @@ each(names, function(item, indice){
 
 // Code here
 
-
+function getUserById(user,str,cb){
+  for (var key in user){
+    if (key === "str"){}
+  cb(user[key]);
+  }
+}
 
 var users = [
   {
